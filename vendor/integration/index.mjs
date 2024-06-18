@@ -33,30 +33,30 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
 
           trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
-          vite: {
-            plugins: [
-              {
-                name: 'vite-plugin-astrowind-config',
-                resolveId(id) {
-                  if (id === virtualModuleId) {
-                    return resolvedVirtualModuleId;
-                  }
-                },
-                load(id) {
-                  if (id === resolvedVirtualModuleId) {
-                    return `
-                    export const SITE = ${JSON.stringify(SITE)};
-                    export const I18N = ${JSON.stringify(I18N)};
-                    export const METADATA = ${JSON.stringify(METADATA)};
-                    export const APP_BLOG = ${JSON.stringify(APP_BLOG)};
-                    export const UI = ${JSON.stringify(UI)};
-                    export const ANALYTICS = ${JSON.stringify(ANALYTICS)};
-                    `;
-                  }
-                },
-              },
-            ],
-          },
+          // vite: {
+          //   plugins: [
+          //     {
+          //       name: 'vite-plugin-astrowind-config',
+          //       resolveId(id) {
+          //         if (id === virtualModuleId) {
+          //           return resolvedVirtualModuleId;
+          //         }
+          //       },
+          //       load(id) {
+          //         if (id === resolvedVirtualModuleId) {
+          //           return `
+          //           export const SITE = ${JSON.stringify(SITE)};
+          //           export const I18N = ${JSON.stringify(I18N)};
+          //           export const METADATA = ${JSON.stringify(METADATA)};
+          //           export const APP_BLOG = ${JSON.stringify(APP_BLOG)};
+          //           export const UI = ${JSON.stringify(UI)};
+          //           export const ANALYTICS = ${JSON.stringify(ANALYTICS)};
+          //           `;
+          //         }
+          //       },
+          //     },
+          //   ],
+          // },
         });
 
         if (typeof _themeConfig === 'string') {
