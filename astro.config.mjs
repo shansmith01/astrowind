@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { defineConfig, passthroughImageService, } from 'astro/config';
+import { defineConfig, squooshImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
@@ -10,13 +10,15 @@ import compress from 'astro-compress';
 import astrowind from './vendor/integration';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter.mjs';
 import cloudflare from "@astrojs/cloudflare";
+import netlify from "@astrojs/netlify";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const hasExternalScripts = false;
 const whenExternalScripts = (items = []) => hasExternalScripts ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
 
+
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
+  output: 'static',
   integrations: [tailwind({
     applyBaseStyles: false
   }), sitemap(), mdx(), icon({
@@ -43,7 +45,8 @@ export default defineConfig({
     config: './src/config.yaml'
   })],
   image: {
-    service: passthroughImageService(),    
+    service: squooshImageService(),
+    domains: ['cdn.pixabay.com']
   },
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
@@ -56,5 +59,5 @@ export default defineConfig({
       }
     }
   },
-  adapter: cloudflare()
+  adapter: netlify()
 });

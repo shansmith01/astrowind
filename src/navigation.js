@@ -42,11 +42,11 @@ export const footerData = {
     { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
-  // socialLinks: [
-  //   { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },    
-  //   { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+  socialLinks: [
+    // { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },    
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
     
-  // ],
+  ],
   footNote: `
     
   `,
